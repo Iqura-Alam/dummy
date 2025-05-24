@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const query = e.target.value.trim();
     if (query.length === 0) return loadOthersListings();
 
-    const res = await fetch(`http://localhost:3000/api/explore/search?q=${encodeURIComponent(query)}`, {
+    const res = await fetch(`https://dummy-2lfk.onrender.com/api/explore/search?q=${encodeURIComponent(query)}`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     const results = await res.json();
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 function filterByCategory(category) {
   const token = localStorage.getItem('token');
-  fetch(`http://localhost:3000/api/explore/category/${category}`, {
+  fetch(`https://dummy-2lfk.onrender.com/api/explore/category/${category}`, {
     headers: { Authorization: `Bearer ${token}` }
   })
     .then(res => res.json())
@@ -33,7 +33,7 @@ function filterByCategory(category) {
 
 async function loadOthersListings() {
   const token = localStorage.getItem('token');
-  const res = await fetch('http://localhost:3000/api/explore/recent', {
+  const res = await fetch('https://dummy-2lfk.onrender.com/api/explore/recent', {
     headers: { Authorization: `Bearer ${token}` }
   });
   const data = await res.json();
