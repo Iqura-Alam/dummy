@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Buyer-Seller Chat</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-white min-h-screen font-sans flex items-center justify-center px-4 py-12">
+
+  <div class="w-full max-w-2xl bg-white rounded-2xl shadow-xl p-6">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">Chat</h2>
+
+    <div id="chat" class="h-64 overflow-y-auto border border-gray-300 rounded-md p-4 bg-gray-50 space-y-2 mb-4"></div>
+
+    <div class="flex gap-2 mb-4">
+      <input type="text" id="msgInput" placeholder="Type your message" class="flex-1 px-4 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      <button onclick="sendMessage()" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">Send</button>
+    </div>
+
+    <div class="flex gap-2">
+      <input type="file" id="imgInput" class="flex-1 text-sm text-gray-700" />
+      <button onclick="sendImage()" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">Send Image</button>
+      <button onclick="location.href='map.html'" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">Map</button>
+
+    </div>
+  </div>
+
+  <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+  <script>
+    const listingId = 'abc123';
+    const buyerId = 'buyer001';
+    const sellerId = 'seller001';
+
+    const roomId = `listing-${listingId}-buyer-${buyerId}-seller-${sellerId}`;
+    let sender = 'buyer'; // or 'seller'
+
+    const socket = io('http://localhost:3000');
+    socket.emit('joinRoom', { roomId });
+
+    const chatDiv = document.getElementById('chat');
+
+    socket.on('chatMessage', ({ sender, message }) => {
+      const el = document.createElement('div');
+      el.innerHTML = `<span class="font-semibold text-gray-700">${sender}:</span> <span>${message}</span>`;
+      chatDiv.appendChild(el);
+      chatDiv.scrollTop = chatDiv.scrollHeight;
+    });
+
+    socket.on('chatImage', ({ sender, imageUrl }) => {
+      const el = document.createElement('div');
+      el.innerHTML = `<span class="font-semibold text-gray-700">${sender}:</span><br><img src="${imageUrl}" class="max-w-xs mt-1 rounded-lg border" />`;
+      chatDiv.appendChild(el);
+      chatDiv.scrollTop = chatDiv.scrollHeight;
+    });
+
+    function sendMessage() {
+      const messageInput = document.getElementById('msgInput');
+      const message = messageInput.value.trim();
+      if (!message) return;
+
+      socket.emit('chatMessage', { roomId, sender, message });
+      messageInput.value = '';
+    }
+
+    async function sendImage() {
+      const fileInput = document.getElementById('imgInput');
+      const file = fileInput.files[0];
+      if (!file) return alert('Please select an image first.');
+
+      const formData = new FormData();
+      formData.append('image', file);
+
+      try {
+        const res = await fetch('http://localhost:3000/upload', {
+          method: 'POST',
+          body: formData,
+        });
+
+        const data = await res.json();
+        socket.emit('chatImage', { roomId, sender, imageUrl: data.imageUrl });
+        fileInput.value = ''; // Clear input
+      } catch (err) {
+        alert('Image upload failed.');
+        console.error(err);
+      }
+    }
+  </script>
+
+</body>
+</html>

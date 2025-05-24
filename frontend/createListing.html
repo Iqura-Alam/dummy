@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Listing</title>
+  <link rel="stylesheet" href="listing.css">
+</head>
+<body>
+  <h2>Create a New Listing</h2>
+  <form id="listingForm">
+    <input type="text" name="title" placeholder="Title" required><br>
+
+    <textarea name="description" placeholder="Description" required></textarea><br>
+
+    <select name="type" required>
+      <option value="">Select Type</option>
+      <option value="Item">Item</option>
+      <option value="Service">Service</option>
+    </select><br>
+
+    <select name="priceType" required>
+      <option value="">Select Pricing</option>
+      <option value="Fixed">Fixed</option>
+      <option value="Bidding">Bidding</option>
+      <option value="Hourly">Hourly</option>
+    </select><br>
+
+    <input type="number" name="price" placeholder="Price"><br>
+
+    <select name="condition">
+      <option value="New">New</option>
+      <option value="Used" selected>Used</option>
+    </select><br>
+
+    <input type="text" name="category" placeholder="Category"><br>
+
+    <select name="visibility" required>
+      <option value="UniversityOnly">University Only</option>
+      <option value="Global">Global</option>
+    </select><br>
+
+     <!-- <input type="text" name="university" placeholder="Your University" required><br> -->
+
+    <button type="submit">Submit Listing</button>
+  </form>
+
+  <p id="message"></p>
+
+  <script src="createListing.js"></script>
+</body>
+</html>

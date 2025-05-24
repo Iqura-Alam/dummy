@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CampusMarket</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-white min-h-screen font-sans">
+
+<div class="flex items-center justify-center px-4 py-12">
+  <div class="bg-white shadow-2xl rounded-3xl w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 overflow-hidden">
+
+    <!-- Left Panel -->
+    <div class="bg-blue-700 text-white p-10 flex flex-col justify-center transition duration-300 ease-in-out">
+      <h1 class="text-5xl font-extrabold leading-tight mb-4">Welcome to<br>CampusMarket</h1>
+      <p class="text-lg opacity-90 mb-10">Buy and sell with verified university students.</p>
+      <div class="space-x-4">
+        <button onclick="showForm('login')" class="bg-white text-blue-700 font-bold py-2 px-6 rounded-full hover:bg-blue-100 transition">Login</button>
+        <button onclick="showForm('signup')" class="bg-white text-blue-700 font-bold py-2 px-6 rounded-full hover:bg-blue-100 transition">Sign Up</button>
+      </div>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="p-8 md:p-12 bg-white">
+
+      <!-- Login Form -->
+      <form id="loginForm" class="space-y-5">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Login</h2>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-600">Email</label>
+          <input type="email" name="email" class="w-full px-4 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required />
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-600">Password</label>
+          <input type="password" name="password" class="w-full px-4 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required />
+        </div>
+
+        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition">Login</button>
+        <div id="loginMessage" class="text-center mt-3 text-red-600 font-medium"></div>
+      </form>
+
+      <!-- Sign Up Form -->
+      <form id="signupForm" class="hidden space-y-4 mt-4">
+        <h2 class="text-2xl font-bold text-gray-800 mb-2">Register</h2>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-600">Full Name</label>
+          <input type="text" name="name" class="w-full px-4 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-600">University</label>
+          <select id="university" name="university" class="w-full px-4 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            <option value="">-- Select --</option>
+            <option value="Islamic University of Technology" data-domain="iut-dhaka.edu">IUT</option>
+            <option value="University of Dhaka" data-domain="du.ac.bd">DU</option>
+            <option value="BRAC University" data-domain="bracu.ac.bd">BRACU</option>
+            <option value="North South University" data-domain="northsouth.edu">NSU</option>
+            <option value="BUET" data-domain="buet.ac.bd">BUET</option>
+
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-600">Email</label>
+          <div class="flex items-center">
+            <input type="text" id="emailLocal" class="w-full px-4 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mr-2" placeholder="yourid" required />
+            <span id="domain" class="text-sm bg-gray-100 py-2 px-3 rounded-md border border-gray-300">@domain.edu</span>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-600">Password</label>
+          <input type="password" name="password" class="w-full px-4 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required />
+        </div>
+
+        <hr class="my-4">
+
+        <h3 class="text-md font-semibold text-gray-700">Academic Info (Optional)</h3>
+        <input type="text" name="department" class="w-full px-4 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Department" />
+        <input type="text" name="program" class="w-full px-4 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Program" />
+        <input type="number" name="year" class="w-full px-4 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Year of Study" min="1" />
+
+        <hr class="my-4">
+
+        <h3 class="text-md font-semibold text-gray-700">Private Info (Required)</h3>
+        <input type="tel" name="phone" class="w-full px-4 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Phone Number" required />
+        <input type="date" name="dob" class="w-full px-4 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required />
+
+        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition">Register</button>
+        <div id="signupMessage" class="text-center mt-3 text-green-600 font-medium"></div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<script src="homepage.js"></script>
+<script src="register.js"></script>
+<script src="login.js"></script>
+</body>
+</html>

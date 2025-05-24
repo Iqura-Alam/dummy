@@ -1,0 +1,57 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+#search-container {
+  position: relative;
+  width: 300px;
+  margin-bottom: 10px;
+}
+
+#locationInput {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+}
+
+#goBtn {
+  padding: 8px 12px;
+  margin-top: 5px;
+}
+
+.suggestions-list {
+  position: absolute;
+  background: white;
+  border: 1px solid #ccc;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.suggestions-list div {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.suggestions-list div:hover {
+  background-color: #f0f0f0;
+}
+
+#map {
+  height: 500px;
+  margin-top: 10px;
+}
+
+#placesContainer {
+  margin-top: 20px;
+}
+
+.place-card {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+

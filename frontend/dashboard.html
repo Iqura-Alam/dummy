@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Student Marketplace Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+  <div class="dashboard-wrapper">
+    <!-- Left blue panel -->
+    <div class="left-panel">
+      <div>
+        <h1>Welcome to <br><span>CampusMarket</span></h1>
+        <p>Buy and sell with verified university students.</p>
+
+        <div class="quick-filters">
+          <button class="filter" onclick="filterByCategory('Textbooks')">Textbooks</button>
+          <button class="filter" onclick="filterByCategory('Tutoring')">Tutoring</button>
+          <button class="filter" onclick="filterByCategory('Electronics')">Electronics</button>
+          <button class="filter" onclick="filterByCategory('Skill Exchange')">Skill Exchange</button>
+
+          <h3>Filter by Price</h3>
+          <input type="number" id="minPrice" placeholder="Min Price" />
+          <input type="number" id="maxPrice" placeholder="Max Price" />
+          <button onclick="filterByPrice()">Apply</button>
+        </div>
+      </div>
+
+      <div>
+        <button class="btn white" onclick="window.location.href='createListing.html'">+ Create Listing</button>
+        <button class="btn white" id="logoutBtn">Logout</button>
+      </div>
+    </div>
+
+    <!-- Right white panel -->
+    <div class="right-panel">
+      <div class="search-bar">
+        <input type="text" id="searchBar" placeholder="Search for items or services..." />
+      </div>
+      <div id="listingContainer" class="listing-grid"></div>
+    </div>
+  </div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
