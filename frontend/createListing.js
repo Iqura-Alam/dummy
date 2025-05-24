@@ -19,7 +19,7 @@ form?.addEventListener('submit', async (e) => {
   data.price = Number(data.price) || 0;
 
   try {
-    const res = await fetch('http://localhost:3000/api/listings', {
+    const res = await fetch('https://dummy-2lfk.onrender.com/api/listings', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
