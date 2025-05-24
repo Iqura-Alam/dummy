@@ -47,7 +47,7 @@ document.getElementById('locationInput').addEventListener('input', async (e) => 
   if (!query) return;
 
   try {
-    const res = await fetch(`http://localhost:3000/api/institutes?q=${encodeURIComponent(query)}`);
+    const res = await fetch(`https://dummy-2lfk.onrender.com/api/institutes?q=${encodeURIComponent(query)}`);
     const institutes = await res.json();
 
     institutes.forEach(inst => {
@@ -78,7 +78,7 @@ document.getElementById('goBtn').addEventListener('click', async () => {
   const name = document.getElementById('locationInput').value.trim();
   if (!name) return alert('Enter an institution name');
 
-  const res = await fetch(`http://localhost:3000/api/institutes?q=${encodeURIComponent(name)}`);
+  const res = await fetch(`https://dummy-2lfk.onrender.com/api/institutes?q=${encodeURIComponent(name)}`);
   const results = await res.json();
   if (results.length === 0) return alert('Institution not found');
 
