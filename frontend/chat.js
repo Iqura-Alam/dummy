@@ -1,4 +1,4 @@
-const socket = io('http://localhost:3000');
+const socket = io('https://dummy-2lfk.onrender.com');
 
 const roomId = 'room123'; // This should be dynamically assigned based on buyer & seller
 let sender = 'buyer'; // Or 'seller', based on logged-in user role
